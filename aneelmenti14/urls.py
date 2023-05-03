@@ -16,9 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from rainbowapp.views import RainbowInput,RainbowInsert
+from rainbowapp.views import RainbowInput,RainbowInsert,RainbowDispaly,RainbowDeleteInput,RainbowDelete
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('rainbowapp/',RainbowInput.as_view()),
     path('rainbowapp/insert',RainbowInsert.as_view()),
+    path('rainbowapp/display',RainbowDispaly.as_view()),
+    path('rainbowapp/deleteinput',RainbowDeleteInput.as_view()),
+    path('rainbowapp/delete',RainbowDelete.as_view())
+
 ]

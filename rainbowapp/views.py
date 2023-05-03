@@ -16,4 +16,20 @@ class RainbowInsert(View):
         p1=Rainbow(pid=p_id,pname=p_name,pcost=p_cost,pmfdt=p_mfdt,pexpdt=p_expdt)
         p1.save()
         return HttpResponse("product inserted sucessfully")
-
+class RainbowDispaly(View):
+    def get(self,request):
+        recs=Rainbow.objects.all()
+        mydict={"records":recs}
+        return render(request,'display.html',context=mydict)
+class RainbowDeleteInput(View):
+    def get(self,request):
+        return render(request,'deleteinput.html')
+class RainbowDelete(View):
+    def get(self, request):
+        p_id = int(request.GET["t1"])
+        p1 = Rainbow.objects.filter(pid=p_id)
+        if p1:
+            p1.delete()
+            return HttpResponse("product deleted successfully")
+        else:
+            return HttpResponse("product dosenot exists")
